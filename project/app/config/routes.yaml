@@ -5,4 +5,4 @@ controllers:
 # the "app_lucky_number" route name is not important yet
 app_lucky_number:
     path: /lucky/number
-    controller: ../src/Controller/LuckyController::number
+    controller: App\Controller\LuckyController::number
