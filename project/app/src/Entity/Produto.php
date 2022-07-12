@@ -21,15 +21,15 @@ class Produto
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $descricao;
 
-    #[ORM\Column(type: 'blob', nullable: true)]
-    private $imagem;
-
     #[ORM\Column(type: 'integer', nullable: true)]
     private $preco;
 
     #[ORM\ManyToMany(targetEntity: categoria::class, inversedBy: 'categorias')]
     private $categorias;
 
+    #[ORM\OneToOne(targetEntity: image::class, cascade: ['persist', 'remove'])]
+    private $foto;
+    
     public function __construct()
     {
         $this->categorias = new ArrayCollection();
@@ -60,18 +60,6 @@ class Produto
     public function setDescricao(?string $descricao): self
     {
         $this->descricao = $descricao;
-
-        return $this;
-    }
-
-    public function getImagem()
-    {
-        return $this->imagem;
-    }
-
-    public function setImagem($imagem): self
-    {
-        $this->imagem = $imagem;
 
         return $this;
     }
@@ -111,4 +99,16 @@ class Produto
 
         return $this;
     }
+
+    public function getFoto(): ?image
+    {
+        return $this->foto;
+    }
+
+    public function setFoto(?image $foto): self
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }   
 }

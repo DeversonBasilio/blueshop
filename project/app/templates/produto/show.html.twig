@@ -8,6 +8,14 @@
     <table class="table">
         <tbody>
             <tr>
+                <th>Imagem</th>
+                <td>
+                    {% if produto.foto is defined %}
+                        <img src="{{ asset('upload/produto/'~produto.foto.filename) }}" alt="">
+                    {%endif%}
+                </td>
+            </tr>
+            <tr>
                 <th>Id</th>
                 <td>{{ produto.id }}</td>
             </tr>
@@ -18,10 +26,6 @@
             <tr>
                 <th>Descricao</th>
                 <td>{{ produto.descricao }}</td>
-            </tr>
-            <tr>
-                <th>Imagem</th>
-                <td>{{ produto.imagem }}</td>
             </tr>
             <tr>
                 <th>Preco</th>

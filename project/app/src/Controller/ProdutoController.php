@@ -30,7 +30,9 @@ class ProdutoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $produtoRepository->add($produto, true);
-
+            
+            $foto = $produto->getFoto()->getFile();
+            
             return $this->redirectToRoute('app_produto_index', [], Response::HTTP_SEE_OTHER);
         }
 

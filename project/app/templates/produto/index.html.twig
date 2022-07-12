@@ -11,9 +11,9 @@
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Descricao</th>
-                <th>Imagem</th>
                 <th>Preco</th>
-                <th>actions</th>
+                <th>foto</th>
+                <th>actions</th>                
             </tr>
         </thead>
         <tbody>
@@ -22,8 +22,11 @@
                 <td>{{ produto.id }}</td>
                 <td>{{ produto.nome }}</td>
                 <td>{{ produto.descricao }}</td>
-                <td>{{ produto.imagem }}</td>
                 <td>{{ produto.preco }}</td>
+                <td>{% if produto.foto is defined %}
+                        <img src="{{ asset('upload/produto/'~produto.foto.filename) }}" alt="">
+                    {%endif%}
+                </td>
                 <td>
                     <a href="{{ path('app_produto_show', {'id': produto.id}) }}">show</a>
                     <a href="{{ path('app_produto_edit', {'id': produto.id}) }}">edit</a>

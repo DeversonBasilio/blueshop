@@ -2,28 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Produto;
+use App\Entity\Image;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class ProdutoType extends AbstractType
+class ImageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nome')
-            ->add('descricao')
-            ->add('preco')
-            ->add('categorias')
-            ->add('foto', ImageType::class, ['label'=> false])
+            ->add('file',FileType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Produto::class,
+            'data_class' => Image::class,
         ]);
     }
 }
