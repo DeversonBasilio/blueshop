@@ -1,0 +1,13 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/home">Blue Shop</a>    
+
+    
+    {% if is_granted('ROLE_USER') %}
+      <a class="btn btn-danger" href="/logout">sair</a>    
+    {% else %}
+      <a href="/login">login</a>  
+    {% endif %}
+
+  </div>
+</nav>
