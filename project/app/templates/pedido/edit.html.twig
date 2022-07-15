@@ -1,0 +1,139 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blushop Pedido!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+
+    {% include('base/nav.html.twig') %}
+
+    <div class="row">
+        <img src="{{ asset('banner/BlueShop.png') }}" alt="" >
+    </div>
+
+    <form class="form-control" action="/pedido/finaliza" method="POST">
+
+        <table class="table table-bordered table-centered">
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Pedido</th>
+                </tr>
+              
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="hidden" value="{{pedido.id}}" name="pedido_id" id="pedido_id"/>
+                        <input type="text" class="form-control" value="Pedido nº: {{pedido.id}}" disabled />
+                    </td>
+                    <td><input type="text" class="form-control" value="Data do pedido: {{pedido.datacriado|date("d/m/Y")}}" disabled />          </td>
+                    <td><input type="text" class="form-control" value="Status: {{pedido.status}}" disabled /></td>
+                    <td><input type="text" class="form-control" value="Total: R$ {{pedido.total}}" disabled />     </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row mt-3">
+            
+            <div class="col-md-6 col-sm-12">
+                <input  type="text" class="form-control" 
+                        id="nome"   name="nome" value="{{pedido.usuario.nome}}" placeholder="Nome do Cliente" required />
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="form-control" value="{{pedido.usuario.email}}" disabled />
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-8 col-sm-12">
+                <input type="text" class="form-control" value="{{pedido.usuario.rua}}" placeholder="Endereço + número" required 
+                id="rua"   name="rua" />
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <input type="text" class="form-control" value="{{pedido.usuario.bairro}}" placeholder="Bairro" required 
+                id="bairro"   name="bairro" /> 
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="form-control" value="{{pedido.usuario.cidade}}" placeholder="Cidade" required
+                id="cidade"   name="cidade" />
+            </div>
+            
+            <div class="col-md-6 col-sm-12">
+                <input type="text" class="form-control" value="{{pedido.usuario.pais}}" placeholder="Pais" required 
+                id="pais"   name="pais" />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col">
+                <input type="text" class="form-control" value="{{pedido.usuario.cep}}" placeholder="CEP" required
+                id="cep"   name="cep"/>
+            </div>
+        </div>
+        {% if pedido.status == 'Aberto' %}
+        <div class="row mt-3">
+            <button class="btn btn-success" type="submit">Finalizar Compra</button>
+        </div>
+        {% endif %}
+    </form>
+
+    
+        <div class="row form-control ml-4">
+
+            <table class="table table-bordered table-centered">
+                <thead>
+                    <tr>
+                        <th colspan=4 class="text-center"> Itens do Pedido </th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>            
+            {%  for produto in pedido.pedidoItens %}
+                    <tr>
+                        <td>  {% if produto.produto.foto is defined %}
+                            <img class="w-100" style="height:100px; max-width:100px" src="{{ asset('upload/produto/' ~produto.produto.foto.filename) }}" alt="">
+                        {% endif %}
+                        </td>
+                        <td>
+                            {{produto.produto.nome}}
+                        </td>
+                        <td>
+                            {% if pedido.status == 'Aberto' %}
+                            <form action="/pedido/item/edita" method="POST" id="form_{{produto.id}}">
+                                <input type="hidden" id="PedidoItemId"     name="PedidoItemId" value="{{produto.id}}" />
+                                <input type="number" id="Quantidade" name="Quantidade" 
+                                    min=1         class="form-control" value="{{produto.quantidade}}" un 
+                                    onchange="this.form.submit()"/>
+                            </form>
+                            {% else %}
+                                {{produto.quantidade}}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {{produto.produto.preco}}
+                        </td>
+                        <td>
+                            {{produto.total}}
+                        </td>
+                    </tr>
+            {% endfor %}  
+
+                </tbody>
+            </table>
+        </div>
+    
+</div>
+{% endblock %}

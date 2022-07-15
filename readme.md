@@ -1,4 +1,4 @@
-<h5>Blue Service Challenge</h5>
+<h3>Blue Service Challenge</h3>
 
 <h6>Escopo</h6>
   <p>O que deve ser desenvolvido?</p>
@@ -31,7 +31,7 @@
     <li>Symfony</li>    
   </ul>
   </br>
-  <p>Back-end</p>
+  <p>Frond-end</p>
   <ul>
     <li>JavaScript</li>
     <li>jQuery 14</li>    

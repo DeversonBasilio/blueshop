@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Blue Shop{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+
+    {% include('base/nav.html.twig') %}
+
+    <div class="row">
+        <img src="{{ asset('banner/BlueShop.png') }}" alt="" >
+    </div>
+    <div class="row">
+        <table class="table table-bordered text-center">
+            <tbody>
+                {% set total = 0 %}
+                {% for produto in produtos %}
+                    <tr>
+                        <td>
+                            {% if produto.produto.foto is defined %}
+                                <img class="w-100" style="height:100px; max-width:100px" src="{{ asset('upload/produto/' ~produto.produto.foto.filename) }}" alt="">
+                            {% endif %}
+                        </td>
+                        <td class="align-middle">{{produto.produto.nome}}</td>
+                        <td class="align-middle">
+                            <form action="/carrinho/edita" method="POST" id="form_{{produto.produto.id}}">
+                                <input type="hidden" id="ProdId"     name="ProdId" value="{{produto.produto.id}}" />
+                                <input type="number" id="Quantidade" name="Quantidade" 
+                                    min=1         class="form-control" value="{{produto.quantidade}}" un 
+                                    onchange="this.form.submit()"/>
+                            </form>
+                        </td>
+                        <td class="align-middle">R$ {{produto.produto.preco}}</td>
+                        <td class="align-middle">R$ {{produto.produto.preco * produto.quantidade}}</td>
+                    </tr>
+                    {% set total = total + (produto.produto.preco * produto.quantidade) %}  
+                {% endfor %}        
+            </tbody>
+            <tfoot>
+                <td  colspan="4"></td>
+                <td>{{total}}</td>
+            </tfoot>
+        </table>
+    </div>
+    <div class="row">
+        <a class="btn btn-warning" href="/pedido/novo">
+            criar pedido
+        </a href="/pedido/novo">
+    </div>
+
+</div>
+{% endblock %}
