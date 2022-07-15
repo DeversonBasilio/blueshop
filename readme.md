@@ -29,6 +29,8 @@
     <li>1 Stack em PHP 8.1</li>
     <li>PostgreSQL 14</li>
     <li>Symfony</li>    
+    <li>Docker</li>
+    <li>Compose</li>
   </ul>
   </br>
   <p>Frond-end</p>
@@ -36,3 +38,60 @@
     <li>JavaScript</li>
     <li>jQuery 14</li>    
   </ul>
+
+<h6> Como instalar ?</h6>
+
+</br>
+<p>
+    Clonar o repositório
+    https://github.com/DeversonBasilio/blueshop.git
+</p>
+
+<p>
+    Abrir a pasta no terminal: /BLUESHOP
+</p>
+
+<p>
+    rodar o comando: <b>docker-compose build</b>
+</p>
+
+<p>
+    rodar o comando: <b>docker-compose up -d</b>
+</p>
+
+<p>
+    rodar o comando: <b>docker exec -it php8-sf6 bash</b>
+</p>
+
+<p>
+    Abra a pasta app: <b>cd app</b>
+</p
+
+<p>
+    Pegue o Symfony runtime, rodando: <b>composer require symfony/runtime</b>
+</p
+
+<p>
+    Crie a base de dados: php bin/console doctrine:database:create
+</p
+
+<p>
+    Cria estrutura do banco: 
+      <b>php bin/console make:migration  </b>
+      <b>php bin/console d:m:m </b>
+</p>
+
+<p>
+    yarn add --dev @symfony/webpack-encore -ignore--engines
+    yarn encore dev --watch
+</p>
+
+<p>
+    Rode o server: 
+      <b> symfony serve -d </b>
+</p>
+  
+<p>
+    Acesse o projeto: 
+      <b> http://127.0.0.1:8001/home </b>
+</p>
