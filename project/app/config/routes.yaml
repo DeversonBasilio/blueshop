@@ -6,6 +6,10 @@ app_produtos:
     path: /produto/
     controller: App\Controller\ProdutoController::index
 
+app_categoria_index:
+    path: /categoria/
+    controller: App\Controller\CategoriaController::index
+
 app_home:
     path: /home/
     controller: App\Controller\HomeController::index
@@ -13,3 +17,15 @@ app_home:
 app_logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
+
+app_carrinho:
+    path: /carrinho
+    controller: App\Controller\HomeController::carrinho
+
+app_carrinho_edita:
+    path: /carrinho/edita
+    controller: App\Controller\HomeController::carrinho_edita
+
+app_pedidositens_edita:
+    path: /pedido/item/edita
+    controller: App\Controller\PedidoController::PedidoItensEdit

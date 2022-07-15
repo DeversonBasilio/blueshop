@@ -3,6 +3,13 @@
 {% block title %}Categoria index{% endblock %}
 
 {% block body %}
+
+<div class="container">
+
+    <div class="row">
+        <img src="{{ asset('banner/BlueShop.png') }}" alt="" >
+    </div>
+
     <h1>Categoria index</h1>
 
     <table class="table">
@@ -19,17 +26,19 @@
                 <td>{{ categorium.id }}</td>
                 <td>{{ categorium.nome }}</td>
                 <td>
-                    <a href="{{ path('app_categoria_show', {'id': categorium.id}) }}">show</a>
-                    <a href="{{ path('app_categoria_edit', {'id': categorium.id}) }}">edit</a>
+                    <a href="{{ path('app_categoria_show', {'id': categorium.id}) }}">Exibir</a>
+                    <a href="{{ path('app_categoria_edit', {'id': categorium.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Nenhum registro encontrado</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_categoria_new') }}">Create new</a>
+    <a href="{{ path('app_categoria_new') }}">Novo</a>
+
+</div>
 {% endblock %}

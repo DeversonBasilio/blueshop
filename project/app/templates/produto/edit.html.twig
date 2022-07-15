@@ -3,6 +3,12 @@
 {% block title %}Edit Produto{% endblock %}
 
 {% block body %}
+<div class="container">
+
+    <div class="row">
+        <img src="{{ asset('banner/BlueShop.png') }}" alt="" >
+    </div>
+
     <h1>Edit Produto</h1>
 
     {{ include('produto/_form.html.twig', {'button_label': 'Update'}) }}
@@ -10,4 +16,6 @@
     <a href="{{ path('app_produto_index') }}">back to list</a>
 
     {{ include('produto/_delete_form.html.twig') }}
+
+</div>
 {% endblock %}

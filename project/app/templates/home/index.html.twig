@@ -13,20 +13,59 @@
     {% include('base/nav.html.twig') %}
 
     <div class="row">
-        <div class="col-lg-3">
-             {% for categorium in categorias %}
-                {{ categorium.nome }}
-             {% endfor %}
+        <img src="{{ asset('banner/BlueShop.png') }}" alt="" >
+    </div>
+    <div class="row">
+        <form class="form-control" method="GET">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Pesquise o produto por nome" aria-label="Pesquise o produto por nome" aria-describedby="basic-addon2" id="busca_produto" name="busca_produto">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-lg-2">
+
+            <ul>
+                {% for categorium in categorias %}
+                    <li>
+                        <a href="#">{{ categorium.nome }} </a></li>
+                {% endfor %}
+            </ul>
+             
         </div>
         
-        <div class="col-lg-9">
+        <div class="col-lg-10">
+
+            <div class="row ">
             {% for produto in produtos %}
-                {{ produto.nome }}
-                {{ produto.preco }}
-                {% if produto.foto is defined %}
-                    <img src="{{ asset('upload/produto/'~produto.foto.filename) }}" alt="">
-                {%endif%}                
+                
+                <div class="col-lg-4 mb-3 d-flex align-items-stretch">   
+                    <div class="card" style="width: 18rem;">
+                        {% if produto.foto is defined %}
+                            <img src="{{ asset('upload/produto/'~produto.foto.filename) }}" alt="" style="height: 337px; object-fit: cover;" />
+                        {% else %}
+                            <img src="..." alt=""/>
+                        {% endif %}     
+                        <div class="card-body">
+                            <h5 class="card-title">{{ produto.nome }}</h5>
+                            <p class="card-text">{{ produto.descricao }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <h5 class="card-title">
+                                <div class="row">
+                                    <div class="col-6">R$ {{ produto.preco }}</div>
+                                    <a href="/home/{{ produto.id }}" class="btn btn-warning col-6">comprar</a>
+                                </div>
+                            </h5>
+                        </div>
+                    </div>    
+                    
+                </div>
             {% endfor %}
+            </div>
         </div>
     </div>
 

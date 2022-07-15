@@ -3,42 +3,54 @@
 {% block title %}Produto index{% endblock %}
 
 {% block body %}
+
+<div class="container">
+
+    <div class="row">
+        <img src="{{ asset('banner/BlueShop.png') }}" alt="" >
+    </div>
+
     <h1>Produto index</h1>
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>foto</th>
                 <th>Nome</th>
                 <th>Descricao</th>
                 <th>Preco</th>
-                <th>foto</th>
-                <th>actions</th>                
+                <th></th>                
+                <th></th>                
             </tr>
         </thead>
         <tbody>
         {% for produto in produtos %}
             <tr>
-                <td>{{ produto.id }}</td>
+                <td>
+                    {% if produto.foto is defined %}
+                        <img class="w-100" style="height:100px" src="{{ asset('upload/produto/'~produto.foto.filename) }}" alt="">
+                    {% endif %}
+                </td>
                 <td>{{ produto.nome }}</td>
                 <td>{{ produto.descricao }}</td>
                 <td>{{ produto.preco }}</td>
-                <td>{% if produto.foto is defined %}
-                        <img src="{{ asset('upload/produto/'~produto.foto.filename) }}" alt="">
-                    {%endif%}
+                <td>
                 </td>
                 <td>
-                    <a href="{{ path('app_produto_show', {'id': produto.id}) }}">show</a>
-                    <a href="{{ path('app_produto_edit', {'id': produto.id}) }}">edit</a>
+                    <a class="btn btn-primary col-12" href="{{ path('app_produto_show', {'id': produto.id}) }}">Exibir</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary col-12" href="{{ path('app_produto_edit', {'id': produto.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Nenhum produto encontrado</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_produto_new') }}">Create new</a>
+    <a class="btn btn-primary col-3" href="{{ path('app_produto_new') }}">Novo produto</a>
+</div>
 {% endblock %}

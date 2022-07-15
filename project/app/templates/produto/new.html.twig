@@ -3,9 +3,18 @@
 {% block title %}New Produto{% endblock %}
 
 {% block body %}
-    <h1>Create new Produto</h1>
+
+<div class="container">
+
+    <div class="row">
+        <img src="{{ asset('banner/BlueShop.png') }}" alt="" >
+    </div>
+
+    <h1>Criar novo Produto</h1>
 
     {{ include('produto/_form.html.twig') }}
 
-    <a href="{{ path('app_produto_index') }}">back to list</a>
+    <a href="{{ path('app_produto_index') }}">Voltar a lista</a>
+
+</div>
 {% endblock %}

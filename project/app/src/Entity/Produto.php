@@ -21,7 +21,7 @@ class Produto
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $descricao;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'float', nullable: true)]
     private $preco;
 
     #[ORM\ManyToMany(targetEntity: categoria::class, inversedBy: 'categorias')]
@@ -64,12 +64,12 @@ class Produto
         return $this;
     }
 
-    public function getPreco(): ?int
+    public function getPreco(): ?float
     {
         return $this->preco;
     }
 
-    public function setPreco(?int $preco): self
+    public function setPreco(?float $preco): self
     {
         $this->preco = $preco;
 
@@ -111,4 +111,8 @@ class Produto
 
         return $this;
     }   
+
+    public function __toString() {
+        return $this->nome;
+    }
 }
