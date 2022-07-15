@@ -78,7 +78,7 @@
 <p>
     Cria estrutura do banco: 
       <b>php bin/console make:migration  </b>
-      <b>php bin/console d:m:m </b>
+      <b>php bin/console doctrine:migrations:migrate   </b>
 </p>
 
 <p>
